@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'>
+    <link rel="stylesheet" href="../assets/style/styleNewMovie.css">
+    <title>Ajouter film</title>
+</head>
+<body>
+    <div class="title_wrapper">
+        <a class="link button is-medium" href="./myMovies.html">Retour</a>
+    </div>
+
+    <div class="form">
+        <div class="title">Nouveau film</div>
+        <div class="subtitle">Ajouter un nouveau film à votre liste</div>
+
+        <div class="input-container ic1">
+          <input id="firstname" class="input nameMovie" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">Nom</label>
+        </div>
+
+        <div class="input-container ic2">
+          <input id="lastname" class="input year" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Année</label>
+        </div>
+
+        <div class="input-container ic2">
+            <input id="lastname" class="input description" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">Description</label>
+        </div>
+
+        <div class="input-container ic2">
+            <input class="file-movie" type="file" accept="image/*">
+        </div>
+
+        <div id="sub">
+            <a href="/" class="submit" >Enregistrer</a>
+        </div>
+        
+    </div>
+
+    <script src="../assets/script/scriptAddMovie.js"></script>   
+</body>
+</html>
