@@ -19,7 +19,11 @@
                     <span class="date"></span>
                     <p class="description"></p>
                 </div>
-                <a href="/" class="del-movie">Supprimer</a>
+                <div class="action-btn-card">
+                    <button class="update-movie">Modifier</button>
+                    <button class="del-movie">Supprimer</button>
+                </div>
+                
             </div>
             
             <div class="product-image"> 
@@ -27,7 +31,22 @@
             </div>
         </div>
     </div>
-    
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="header-modal">
+                <p style="margin-top: 1%;">Êtes-vous sûr de vouloir supprimer le film ?</p>
+                <span class="close">&times;</span>
+            </div>
+            
+
+            <div class="modal-btn-card">
+                <a href="/" class="btn-action-del">Supprimer</a>
+                <button class="btn-action-close">Fermer</button>
+            </div>
+            
+        </div>
+    </div>
 
     <script src="../assets/script/scriptCardMovie.js"></script>
 </body>
