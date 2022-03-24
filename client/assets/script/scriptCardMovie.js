@@ -19,6 +19,8 @@ fetch(url, options)
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const idMovie = urlParams.get('id');
+        
+        document.querySelector(".update-movie").href = `../pages/addMovie.html?id=${idMovie}`;
 
         let movie = "";
         response.movies.forEach(element => {
