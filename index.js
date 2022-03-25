@@ -85,9 +85,7 @@ app.post('/movie/del', (req, res) => {
             fs.writeFileSync("data/movies.json", JSON.stringify(json))
         });
 
-        fs.stat(path.join(__dirname, `/client/assets/img/imgMovies/${delFile}`), function (err, stats) {
-            console.log(stats);//here we got all information of file in stats variable
-         
+        fs.stat(path.join(__dirname, `/client/assets/img/imgMovies/${delFile}`), function (err, stats) {      
             if (err) {
                 return console.error(err);
             }
@@ -124,6 +122,52 @@ app.post('/movie/add', (req, res) => {
     
                     var json = JSON.parse(data);
                     json.movies.push(movie);
+                
+                    fs.writeFileSync("data/movies.json", JSON.stringify(json))
+                }); 
+            });
+        }
+    });
+
+    res.sendFile(__dirname + '/client/pages/myMovies.html');
+}) 
+
+app.post('/movie/update', (req, res) => {
+    fs.readdir(path.join(__dirname, 'data/'), (err, files) => {
+
+        if (err) {
+            return console.log(`le dossier ne peut pas être ouvert ${err}`);
+        } 
+        else {
+            files.forEach((file) => {
+                var movie = {
+                    id: req.body.id,
+                    name: req.body.name, 
+                    date: req.body.date, 
+                    description: req.body.description, 
+                }
+                console.log(movie);
+                 
+                fs.readFile('data/movies.json', (err, data) => {
+                    let moviesTab = [];
+                    var json = JSON.parse(data);
+
+                    Liste.movies.forEach(element => {
+                        if (element.id == movie.id) {
+                            let updateMovie = {
+                                id: element.id,
+                                name: movie.name,
+                                date: movie.date,
+                                description: movie.description,
+                                img : element.img
+                            }
+                            moviesTab.push(updateMovie);
+                        } else {
+                            moviesTab.push(element);
+                        }
+                    });
+
+                    json.movies = moviesTab;
                 
                     fs.writeFileSync("data/movies.json", JSON.stringify(json))
                 }); 

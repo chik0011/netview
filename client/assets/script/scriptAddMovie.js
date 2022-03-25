@@ -3,6 +3,8 @@ const urlParams = new URLSearchParams(queryString);
 const idMovie = urlParams.get('id');
 
 if (idMovie != null || idMovie != undefined) {
+
+    document.querySelector(".file-movie").style.display = "none";
     let myHeader = new Headers();
     let url = "/myMovie";
     let options = {
@@ -22,17 +24,56 @@ if (idMovie != null || idMovie != undefined) {
     })
     .then((response) => {
         let findMovie = false;
+        let nameMovie = "";
+        let dateMovie = "";
+        let descMovie = "";
+
         response.movies.forEach(element => {
             if (element.id == idMovie) {
                 findMovie = true;
                 document.querySelector("#firstname").value = element.name;
                 document.querySelector("#lastname").value = element.date;
                 document.querySelector("#desc").value = element.description;
-                let name = element.name;
-                let date = element.date;
-                let desc = element.description;
+                nameMovie = element.name;
+                dateMovie = element.date;
+                descMovie = element.description;
             }
         });
+
+        let btnAction = document.querySelector(".submit");
+
+        btnAction.addEventListener("click", () => {
+            if (dateMovie != "" && descMovie != "" && nameMovie != "") {
+
+                let name = document.querySelector('.nameMovie').value;
+                let year = document.querySelector('.year').value;
+                let desc = document.querySelector('.description').value;
+
+                if (name && year && desc) {
+                    var myHeadersUpdate = new Headers({ 'Content-Type': 'application/json' });
+        
+                    var urlUpdate = '/movie/update';
+                
+                    var movie = {
+                        id: idMovie,
+                        name: name,
+                        date: year,
+                        description: desc,
+                    }
+                
+                    var optionsUpdate = { 
+                        method: 'POST',
+                        headers: myHeadersUpdate,
+                        mode: 'cors',
+                        cache: 'default',
+                        body: JSON.stringify(movie)
+                    };
+                
+                    fetch(urlUpdate, optionsUpdate)   
+                }
+            }
+        });
+        
     })
 } else {
     document.querySelector('.submit').addEventListener("click", function () {
